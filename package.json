@@ -1,0 +1,36 @@
+{
+  "name": "bibutils.js",
+  "author": "Jet Holt",
+  "version": "1.0.0",
+  "description": "Node wrapper for Chris Putnam's bibutils program set",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jetroid/bibutils.js.git"
+  },
+  "os": [
+    "linux",
+    "darwin",
+    "win32"
+  ],
+  "keywords": [
+    "bibutils",
+    "bibtex",
+    "copac",
+    "endnote",
+    "isi",
+    "pubmed",
+    "mods",
+    "ris",
+    "ads",
+    "wordbib"
+  ],
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Jetroid/bibutils.js/issues"
+  },
+  "homepage": "https://github.com/Jetroid/bibutils.js#readme"
+}
