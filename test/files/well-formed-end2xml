@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modsCollection xmlns="http://www.loc.gov/mods/v3">
+<mods ID="article">
+    <titleInfo>
+        <title>The title of the work</title>
+    </titleInfo>
+    <name type="personal">
+        <namePart type="given">Peter</namePart>
+        <namePart type="family">Adams</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <originInfo>
+        <dateIssued>1993-07</dateIssued>
+    </originInfo>
+    <typeOfResource>text</typeOfResource>
+    <relatedItem type="host">
+        <titleInfo>
+            <title>The name of the journal</title>
+        </titleInfo>
+        <originInfo>
+            <issuance>continuing</issuance>
+        </originInfo>
+        <genre authority="marcgt">periodical</genre>
+        <genre>academic journal</genre>
+    </relatedItem>
+    <note>An optional note</note>
+    <identifier type="citekey">article</identifier>
+    <part>
+        <date>1993-07</date>
+        <detail type="volume"><number>4</number></detail>
+        <detail type="issue"><number>2</number></detail>
+        <extent unit="page">
+            <start>201</start>
+            <end>213</end>
+        </extent>
+    </part>
+</mods>
+</modsCollection>

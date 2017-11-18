@@ -5,7 +5,7 @@
   "description": "Node wrapper for Chris Putnam's bibutils program set",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/Jetroid/bibutils.js/issues"
   },
-  "homepage": "https://github.com/Jetroid/bibutils.js#readme"
+  "homepage": "https://github.com/Jetroid/bibutils.js#readme",
+  "dependencies": {
+    "mocha": "^4.0.1"
+  }
 }
