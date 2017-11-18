@@ -53,20 +53,31 @@ var formats = module.exports.formats = Object.freeze({
     BIBTEX                              : 'bib',
     COPAC                               : 'copac',
     ENDNOTE_REFER                       : 'end',
+    ENDNOTE                             : 'end',
     ENDNOTE_XML                         : 'endx',
     ISI_WEB_OF_SCIENCE                  : 'isi',
+    ISI                                 : 'isi',
     PUBMED_XML                          : 'med',
+    PUBMED                              : 'med',
     METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
-    RIS_RESEARCH_INFORMATION_SYSTEMS    : 'ris'
+    MODS                                : 'xml',
+    RIS_RESEARCH_INFORMATION_SYSTEMS    : 'ris',
+    RIS                                 : 'ris'
   },
   to: {
     NASA_ASTROPHYSICS_DATA_SYSTEM       : 'ads',
+    ADS                                 : 'ads',
     BIBTEX                              : 'bib',
     ENDNOTE                             : 'end',
+    ENDNOTE_REFER                       : 'end',
     ISI_WEB_OF_SCIENCE                  : 'isi',
+    ISI                                 : 'isi',
     RIS_RESEARCH_INFORMATION_SYSTEMS    : 'ris',
+    RIS                                 : 'ris',
     WORD_2007_BIBLIOGRAPHY              : 'wordbib',
-    METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml'
+    WORDBIB                             : 'wordbib',
+    METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
+    MODS                                : 'xml',
   }
 });
 
