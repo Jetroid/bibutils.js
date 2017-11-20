@@ -93,8 +93,8 @@ bibutils.convert(convertFrom, convertTo, myCitationString, callback);
 ## Constants
 
 `bibutils.js` does not determine the format of your string when converting.
-You must specify to the program what format you and converting from,
-and what format you are converting to.
+You must specify to the program which format you are converting from,
+and which format you are converting to.
 
 `bibutils.js` exposes the formats it accepts with the `.formats` variable.
 
@@ -153,7 +153,7 @@ or
 
 ```
 var convertFrom = bibutils.formats.from.RIS;
-var convertTo = bibutils.formats.to.NASA;
+var convertTo = bibutils.formats.to.ADS;
 ```
 
 but not
