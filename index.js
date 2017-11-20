@@ -84,7 +84,7 @@ var formats = module.exports.formats = Object.freeze({
 var convert = module.exports.convert = function (inFormat, outFormat, content, cb) {
   //Error out if they use something wrong
   if(!Object.values(formats.from).includes(inFormat)) {
-    throw new Error('Unknown or unsupported bibliography import format: `' + outFormat +
+    throw new Error('Unknown or unsupported bibliography import format: `' + inFormat +
                     '`\nUse bibutils.formats.from to find an appropriate import format.\n' );
   }
   if(!Object.values(formats.to).includes(outFormat)) {
