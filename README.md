@@ -80,7 +80,7 @@ Write a callback to be called when conversion is completed.
 ```
 var callback = function (data) {
   console.log(data);
-}
+};
 ```
 
 Replacing `myCitationString` with your citation string object,
