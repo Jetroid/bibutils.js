@@ -17,9 +17,10 @@
 var spawn = require('child_process').spawn;
 var os = require('os');
 var platform = os.platform();
+var path = require('path');
 
-// Path for the binary files
-var BIN_PATH = './bibutils/';
+// Path component for the binary files
+var BIN_FOLDER = 'bibutils';
 
 // Get the platform extension - we use this to determine the binary to execute
 var EXT = '';
@@ -35,10 +36,12 @@ if (platform === 'win32'){
 
 // Get the path to the appropriate binary
 function binaryPath(inFormat, outFormat) {
+  var file = "";
   if (inFormat === outFormat){
-    return BIN_PATH + 'modsclean' + EXT;
+    file = 'modsclean' + EXT;
   }
-  return BIN_PATH + inFormat + '2' + outFormat + EXT;
+  file = inFormat + '2' + outFormat + EXT;
+  return path.join(__dirname, BIN_FOLDER, file);
 }
 
 function executeApplication(commandPath, content, callback) {
