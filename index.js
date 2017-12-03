@@ -39,8 +39,9 @@ function binaryPath(inFormat, outFormat) {
   var file = "";
   if (inFormat === outFormat){
     file = 'modsclean' + EXT;
+  } else {
+    file = inFormat + '2' + outFormat + EXT;
   }
-  file = inFormat + '2' + outFormat + EXT;
   return path.join(__dirname, BIN_FOLDER, file);
 }
 
