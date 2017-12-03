@@ -3,10 +3,10 @@ This module is a node wrapper of Chris Putnam's bitutils program set.
 Convert between several bibliography formats.
 
 ```javascript
-var bibutils = require('bibutils');
+var bibutils = require('bibutils.js');
 
-var convertFrom = bibutils.from.BIBTEX;
-var convertTo = bibutils.to.ENDNOTE;
+var convertFrom = bibutils.formats.from.BIBTEX;
+var convertTo = bibutils.formats.to.ENDNOTE;
 bibutils.convert(convertFrom, convertTo, myCitationString, function (data) {
   console.log(data);	
 });
@@ -44,7 +44,7 @@ Conversion is supported from the following formats:
 
 Conversion is supported to the following formats:
 
-* ADS - [NASA Astrophysics Data System](https://en.wikipedia.org/wiki/Astrophysics_Data_System)
+* ADS - [NASA Astrophysics Data System](https://en.wikipedia.org/wiki/Astrophysics_Data_System) [Tagged Format](http://doc.adsabs.harvard.edu/abs_doc/help_pages/taggedformat.html)
 * BibTeX
 * EndNote
 * [ISI Web of Science](http://wiki.cns.iu.edu/pages/viewpage.action?pageId=1933374)
@@ -56,28 +56,28 @@ Conversion is supported to the following formats:
 
 Install the module to your project:
 
-```
+```javascript
 $ npm install bibutils.js
 ```
 
 Include the module in your project:
 
-```
-var bibutils = require('bibutils');
+```javascript
+var bibutils = require('bibutils.js');
 ```
 
-Select the appropriate constants for your required conversion from
-[the constants section](#constants).
+Select the appropriate format for your required conversion from
+[the formats section](#format-specification).
 
-```
-var convertFrom = bibutils.from.BIBTEX;
-var convertTo = bibutils.to.ENDNOTE;
+```javascript
+var convertFrom = bibutils.formats.from.BIBTEX;
+var convertTo = bibutils.formats.to.ENDNOTE;
 ```
 
 Write a callback to be called when conversion is completed.
 `data` is the converted bibliography as a string.
 
-```
+```javascript
 var callback = function (data) {
   console.log(data);
 };
@@ -86,25 +86,31 @@ var callback = function (data) {
 Replacing `myCitationString` with your citation string object,
 call the conversion:
 
-```
+```javascript
 bibutils.convert(convertFrom, convertTo, myCitationString, callback);
 ```
 
-## Constants
+## Format Specification
 
-`bibutils.js` does not determine the format of your string when converting.
+`bibutils.js` does not automatically determine which format you have given it.
 You must specify to the program which format you are converting from,
 and which format you are converting to.
 
 `bibutils.js` exposes the formats it accepts with the `.formats` variable.
 
+Formats can be specified [using constants](#format-via-constants),
+or (in some cases) can be determined from MIME type or file extension.
+
+### Format via Constants
+
 `.formats.from` is an object of all pairings that `bibutils` can convert from:
 
-```
+```javascript
 bibutils.formats.from = {
   BIBTEX                              : 'bib',
   COPAC                               : 'copac',
   ENDNOTE_REFER                       : 'end',
+  ENDNOTE_TAGGED                      : 'end',
   ENDNOTE                             : 'end',
   ENDNOTE_XML                         : 'endx',
   ISI_WEB_OF_SCIENCE                  : 'isi',
@@ -115,13 +121,13 @@ bibutils.formats.from = {
   MODS                                : 'xml',
   RIS_RESEARCH_INFORMATION_SYSTEMS    : 'ris',
   RIS                                 : 'ris'
-}
+};
 ```
 
 `.formats.to` is an object of all pairings that `bibutils` can convert to:
 
-```
-bibutils.formats.to: {
+```javascript
+bibutils.formats.to = {
   NASA_ASTROPHYSICS_DATA_SYSTEM       : 'ads',
   ADS                                 : 'ads',
   BIBTEX                              : 'bib',
@@ -135,7 +141,7 @@ bibutils.formats.to: {
   WORDBIB                             : 'wordbib',
   METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
   MODS                                : 'xml',
-}
+};
 ```
 
 It is recommended that you use the keys inside these objects when communicating
@@ -144,24 +150,154 @@ with bibutils.js.
 For example, if you wanted to convert from RIS to the Nasa Astrophysics Data System,
 it is recommended that you do
 
-```
+```javascript
 var convertFrom = bibutils.formats.from.RIS_RESEARCH_INFORMATION_SYSTEMS;
 var convertTo = bibutils.formats.to.NASA_ASTROPHYSICS_DATA_SYSTEM;
 ```
 
 or 
 
-```
+```javascript
 var convertFrom = bibutils.formats.from.RIS;
 var convertTo = bibutils.formats.to.ADS;
 ```
 
 but not
 
-```
+```javascript
 var convertFrom = 'ris';
 var convertTo = 'ads';
 ```
+
+This allows your application to be resistant to changes in the implementation
+of `bibutils`.
+
+### Formats via MIME types
+
+In some scenarios, the only thing you know about the string you want
+to convert is what it's MIME type is.
+
+`bibutils` contains a mapping from MIME type to format that you
+can try to use. This is `.formats.mime2format`
+
+```javascript
+// Convert from BibTex to ISI
+var convertFrom = bibutils.formats.mime2format['application/x-bibtex'];
+var convertTo = bibutils.formats.mime2format['application/x-inst-for-scientific-info'];
+```
+
+If the correct MIME type isn't given,
+this could easily fail, so is not a recommended method.
+
+```javascript
+// Want to convert from MODS
+var modsMime = 'application/xml';
+// MODS is XML but the correct MIME type is 'application/mods+xml'
+var convertFrom = bibutils.formats.mime2format[modsMime];
+// 'application/xml' actually means Word 2007 Bibliography.
+// The conversion will fail :(
+```
+
+`bibutils` does not currently have a specific mime type for
+the ADS Tagged Format, COPAC formatted reference,
+or the Word 2007 Bibliography format.
+
+If you know of one, please submit a pull request with an appropriate reference!
+
+`bibutils` holds the following mapping:
+
+```javascript
+bibutils.formats.mime2format = {
+  'application/x-bibtex'                      : 'bib',
+  'application/x-endnote-library'             : 'endx',
+  'application/x-endnote-refer'               : 'end',
+  'text/x-pubmed'                             : 'med',
+  'application/mods+xml'                      : 'xml',
+  'application/x-research-info-systems'       : 'ris',
+  'application/x-inst-for-scientific-info'    : 'isi',
+  //Nonstandard ones
+  'text/x-bibtex'                             : 'bib',
+  'text/x-endnote-library'                    : 'endx',
+  'text/x-endnote-refer'                      : 'end',
+  'text/mods+xml'                             : 'xml',
+  'text/x-research-info-systems'              : 'ris',
+  'text/x-inst-for-scientific-info'           : 'isi',
+  //Nature uses this
+  'text/application/x-research-info-systems'  : 'ris',
+  //Cell uses this
+  'text/ris'                                  : 'ris',
+};
+```
+
+### Formats via File Extensions
+
+As with MIME types, in some scenarios, the only thing you know
+about your strings' format is the extension of the file it was read from.
+
+`bibutils` contains a mapping from file extension to format that you can use.
+This is `.formats.extension2format`.
+
+```javascript
+// Convert from BibTex to ISI
+var convertFrom = bibutils.formats.extension2format['.bib'];
+var convertTo = bibutils.formats.extension2format['.isi'];
+```
+
+Unfortunately, a few formats share the `.xml` extension.
+
+```javascript
+var convertFrom = bibutils.formats.extension2format['.xml'];
+// convertFrom now equals `['endx','med','wordbib','xml']`
+```
+
+`bibutils` does not currently have a specific extension for
+the ADS Tagged Format, or the COPAC formatted reference.
+
+If you know of one, please submit a pull request with an appropriate reference!
+
+`.txt` is used for these values.
+
+```javascript
+var convertFrom = bibutils.formats.extension2format['.txt'];
+// convertFrom now equals `['ads','copac']`
+```
+
+`bibutils` holds the following mapping:
+
+```javascript
+bibutils.formats.extension2format = {
+  '.bib'      : 'bib',
+  '.end'      : 'end',
+  '.ris'      : 'ris',
+  '.xml'      : ['endx','med','wordbib','xml'],
+  '.isi'      : 'isi',
+  //ads and copac unknown - default to .txt
+  '.txt'      : ['ads','copac']
+};
+```
+
+## Metadata Specification
+
+Similar to the [Format Specification](#format-specification) above,
+`bibutils` provides a way to apply MIME type and get the file extension for the
+converted result.
+
+This is provided by the `.formats.format2mime` and `.formats.format2extension`
+objects.
+
+```javascript
+// Get MIME type and extension for ISI result
+var convertTo = bibutils.formats.to.ISI;
+var mimeType = bibutils.formats.format2mime[convertTo];
+var extension = bibutils.formats.format2extension[convertTo];
+```
+
+As discussed above, `bibutils` does not currently have a specific mime type for
+the ADS Tagged Format, COPAC formatted reference, or the Word 2007 Bibliography
+format. It also does not currently have a specific extension for
+the ADS Tagged Format, or the COPAC formatted reference.
+
+If you know of these, please submit a pull request with an appropriate reference!
 
 ## Tests
 

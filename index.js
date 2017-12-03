@@ -18,6 +18,7 @@ var spawn = require('child_process').spawn;
 var os = require('os');
 var platform = os.platform();
 var path = require('path');
+var formats = module.exports.formats = require('./formats');
 
 // Path component for the binary files
 var BIN_FOLDER = 'bibutils';
@@ -51,39 +52,6 @@ function executeApplication(commandPath, content, callback) {
   child.stdin.end();
   child.stdout.on('data', function (data) { callback(data.toString()) });
 }
-
-var formats = module.exports.formats = Object.freeze({
-  from: {
-    BIBTEX                              : 'bib',
-    COPAC                               : 'copac',
-    ENDNOTE_REFER                       : 'end',
-    ENDNOTE                             : 'end',
-    ENDNOTE_XML                         : 'endx',
-    ISI_WEB_OF_SCIENCE                  : 'isi',
-    ISI                                 : 'isi',
-    PUBMED_XML                          : 'med',
-    PUBMED                              : 'med',
-    METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
-    MODS                                : 'xml',
-    RIS_RESEARCH_INFORMATION_SYSTEMS    : 'ris',
-    RIS                                 : 'ris'
-  },
-  to: {
-    NASA_ASTROPHYSICS_DATA_SYSTEM       : 'ads',
-    ADS                                 : 'ads',
-    BIBTEX                              : 'bib',
-    ENDNOTE                             : 'end',
-    ENDNOTE_REFER                       : 'end',
-    ISI_WEB_OF_SCIENCE                  : 'isi',
-    ISI                                 : 'isi',
-    RIS_RESEARCH_INFORMATION_SYSTEMS    : 'ris',
-    RIS                                 : 'ris',
-    WORD_2007_BIBLIOGRAPHY              : 'wordbib',
-    WORDBIB                             : 'wordbib',
-    METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
-    MODS                                : 'xml',
-  }
-});
 
 var convert = module.exports.convert = function (inFormat, outFormat, content, cb) {
   //Error out if they use something wrong
