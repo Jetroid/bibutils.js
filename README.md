@@ -120,7 +120,7 @@ bibutils.formats.from = {
   METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
   MODS                                : 'xml',
   RIS_RESEARCH_INFORMATION_SYSTEMS    : 'ris',
-  RIS                                 : 'ris'
+  RIS                                 : 'ris',
 };
 ```
 
@@ -171,6 +171,28 @@ var convertTo = 'ads';
 
 This allows your application to be resistant to changes in the implementation
 of `bibutils`.
+
+### Formats via Human Readable Name
+
+It's quite likely that you may want a user to be able to select the format.
+`bibutils` provides a set of human readable values that you can access for this
+purpose.
+
+`.formats.from_human` and `.formats.to_human` are the same as the
+`.formats.from` and `.formats.to` objects, but with duplicates removed
+and with the key set to a human readable string.
+
+This makes it perfect for displaying to the user;
+You can get the human readable list with `Object.keys()`,
+allow the user to select them in a dropdown, 
+and then acquire the correct format for use in the `.convert()` function.
+
+```javascript
+var humanReadable = Object.keys(bibutils.formats.to_human);
+// => ['ADS Tagged Format', 'BibTex', 'EndNote', 'ISI', ...]
+var selection = humanReadable[1];
+var convertTo = bibutils.formats.to_human[selection]
+```
 
 ### Formats via MIME types
 

@@ -29,7 +29,17 @@ module.exports = Object.freeze({
     METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
     MODS                                : 'xml',
     RIS_RESEARCH_INFORMATION_SYSTEMS    : 'ris',
-    RIS                                 : 'ris'
+    RIS                                 : 'ris',
+  },
+  from_human: {
+    'BibTeX'      : 'bib',
+    'Copac'       : 'copac',
+    'EndNote'     : 'end',
+    'EndNote XML' : 'endx',
+    'ISI'         : 'isi',
+    'PubMed'      : 'med',
+    'MODS'        : 'xml',
+    'RIS'         : 'ris',
   },
   to: {
     NASA_ASTROPHYSICS_DATA_SYSTEM       : 'ads',
@@ -46,6 +56,15 @@ module.exports = Object.freeze({
     WORDBIB                             : 'wordbib',
     METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
     MODS                                : 'xml',
+  },
+  to_human: {
+    'ADS Tagged Format'       : 'ads',
+    'BibTeX'                  : 'bib',
+    'EndNote'                 : 'end',
+    'ISI'                     : 'isi',
+    'RIS'                     : 'ris',
+    'MODS'                    : 'xml',
+    'Word 2007 Bibliography'  : 'wordbib',
   },
   format2mime: {
     //unknown
@@ -89,7 +108,7 @@ module.exports = Object.freeze({
     '.xml'      : ['endx','med','wordbib','xml'],
     '.isi'      : 'isi',
     //ads and copac unknown - default to .txt
-    '.txt'      : ['ads','copac']
+    '.txt'      : ['ads','copac'],
   },
   format2extension: {
     //ads unknown - default to .txt
