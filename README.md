@@ -1,4 +1,4 @@
-This module is a node wrapper of Chris Putnam's bitutils program set.
+This module is a node wrapper of Chris Putnam's bitutils v6.2 program set.
 
 Convert between several bibliography formats.
 
@@ -359,17 +359,3 @@ Nope, I can't even if I wanted to.
 
 The set of programs that this module wraps are released under GPL and therefore
 so is this module.
-
-### Can you update to a newer version of bibutils? 
-
-Yes, we're on version 3.4, and yes 
-[newer versions are available](https://sourceforge.net/projects/bibutils/files/).
-
-The binaries used here are taken from the [refbase entry](http://bibutils.refbase.org/)
-which is at version 3.4; sourceforge does not provide compiled binaries.
-
-I can only generate the binaries for Linux, and would not like any platform 
-to use a different version to any other platform. 
-
-If you're able to generate the latest binaries for OSX and Windows,
-feel free to leave a pull request.
