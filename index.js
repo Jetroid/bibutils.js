@@ -16,14 +16,14 @@
 //
 var spawn = require('child_process').spawn;
 var os = require('os');
-var platform = os.platform();
+const platform = os.platform();
 var path = require('path');
 const {
   formats
 } = module.exports = require('./formats');
 
 // Path component for the binary files
-var BIN_FOLDER = 'bibutils';
+const BIN_FOLDER = 'bibutils';
 
 // Get the platform extension - we use this to determine the binary to execute
 var EXT = '';
@@ -40,6 +40,9 @@ if (platform === 'win32'){
 // Get the path to the appropriate binary
 function binaryPath(inFormat, outFormat) {
   var file = "";
+  // Given that one of inFormat or outFormat has been replaced with MODS,
+  // then if both are equal then it's MODS -> MODS
+  // MODS -> MODS should run modsclean
   if (inFormat === outFormat){
     file = 'modsclean' + EXT;
   } else {
