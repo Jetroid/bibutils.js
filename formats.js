@@ -150,6 +150,21 @@ const metadata = Object.freeze({
     'wordbib' : '.xml',
     'xml'     : '.xml',
   },
+  humanReadable: {
+    'ads'     : 'ADS Tagged Format',
+    'bib'     : 'BibTeX',
+    'biblatex': 'BibLaTeX',
+    'copac'   : 'Copac',
+    'ebi'     : 'EBI XML',
+    'end'     : 'EndNote',
+    'endx'    : 'EndNote XML',
+    'isi'     : 'ISI',
+    'med'     : 'PubMed',
+    'nbib'    : 'NBIB MEDLINE',
+    'ris'     : 'RIS',
+    'wordbib' : 'Word 2007 Bibliography',
+    'xml'     : 'MODS',
+  },
 });
 const sampleBibtexString = '@Article{article,\nauthor="Adams, Peter",\ntitle="The title of the work",\njournal="The name of the journal",\nyear="1993",\nmonth="Jul",\nvolume="4",\nnumber="2",\npages="201--213",\nnote="An optional note"\n}'
 
