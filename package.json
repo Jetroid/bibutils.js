@@ -33,7 +33,7 @@
     "url": "https://github.com/Jetroid/bibutils.js/issues"
   },
   "homepage": "https://github.com/Jetroid/bibutils.js#readme",
-  "dependencies": {
+  "devDependencies": {
     "mocha": "^4.0.1"
   }
 }
