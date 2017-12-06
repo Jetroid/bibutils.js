@@ -51,14 +51,15 @@ function binaryPath(inFormat, outFormat) {
   return path.join(__dirname, BIN_FOLDER, file);
 }
 
-function executeApplication(commandPath, content, callback) {
-  var child = spawn(commandPath);
+function executeApplication(commandPath, content, callback, arguments) {
+  var child = spawn(commandPath, arguments);
   child.stdin.write(content);
   child.stdin.end();
   child.stdout.on('data', function (data) { callback(data.toString()) });
 }
 
-module.exports.convert = function (inFormat, outFormat, content, cb) {
+module.exports.convert = function (inFormat, outFormat, content, cb, argumentsFrom=[], argumentsTo=[]) {
+
   //Error out if they use something wrong
   if(!Object.values(formats.constants.from).includes(inFormat)) {
     throw new Error('Unknown or unsupported bibliography import format: `' + inFormat +
@@ -70,9 +71,11 @@ module.exports.convert = function (inFormat, outFormat, content, cb) {
   }
 
   // If they only want to do a MODS-based conversion, we can just execute that directly
-  if(inFormat === formats.constants.to.METADATA_OBJECT_DESCRIPTION_SCHEMA ||
-     outFormat === formats.constants.from.METADATA_OBJECT_DESCRIPTION_SCHEMA) {
-    return executeApplication(binaryPath(inFormat, outFormat), content, cb);
+  if(outFormat === formats.constants.to.METADATA_OBJECT_DESCRIPTION_SCHEMA) {
+    return executeApplication(binaryPath(inFormat, outFormat), content, cb, argumentsFrom);
+  }
+  if(inFormat === formats.constants.from.METADATA_OBJECT_DESCRIPTION_SCHEMA) {
+    return executeApplication(binaryPath(inFormat, outFormat), content, cb, argumentsTo);
   }
 
   // If they want to convert something else we need to do it using MODS
@@ -81,8 +84,8 @@ module.exports.convert = function (inFormat, outFormat, content, cb) {
   // Create the callback for the second half first, for the first half to call
   var internalCallback = function (data) {
     // The result of this calls their callback
-    executeApplication(binaryPath(formats.constants.from.METADATA_OBJECT_DESCRIPTION_SCHEMA, outFormat), data, cb);
+    executeApplication(binaryPath(formats.constants.from.METADATA_OBJECT_DESCRIPTION_SCHEMA, outFormat), data, cb, argumentsTo);
   }
   // Convert their thing to MODS.
-  executeApplication(binaryPath(inFormat, formats.constants.to.METADATA_OBJECT_DESCRIPTION_SCHEMA), content, internalCallback);
+  executeApplication(binaryPath(inFormat, formats.constants.to.METADATA_OBJECT_DESCRIPTION_SCHEMA), content, internalCallback, argumentsFrom);
 };
