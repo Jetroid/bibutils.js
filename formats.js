@@ -81,7 +81,7 @@ const formats = Object.freeze({
     },
   },
   mime: {
-    'application/x-bibtex'                      : 'bib',
+    'application/x-bibtex'                      : ['bib', 'biblatex'],
     'application/x-endnote-library'             : 'endx',
     'application/x-endnote-refer'               : 'end',
     'text/x-pubmed'                             : 'med',
@@ -90,6 +90,8 @@ const formats = Object.freeze({
     'application/x-research-info-systems'       : 'ris',
     'application/mods+xml'                      : 'xml',
     //Nonstandard ones
+    'application/xml'                           : ['ebi','endx','med','wordbib','xml'],
+    'text/plain'                                : ['ads','bib','biblatex','copac','end','isi','nbib','ris'],
     'text/x-bibtex'                             : 'bib',
     'text/x-endnote-library'                    : 'endx',
     'text/x-endnote-refer'                      : 'end',
