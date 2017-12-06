@@ -15,8 +15,8 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 const formats = Object.freeze({
-  from: {
-    constants: {
+  constants: {
+    from: {
       BIBTEX                              : 'bib',
       BIBLATEX                            : 'biblatex',
       COPAC                               : 'copac',
@@ -38,23 +38,7 @@ const formats = Object.freeze({
       METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
       MODS                                : 'xml',
     },
-    human: {
-      'BibTeX'                  : 'bib',
-      'BibLaTeX'                : 'biblatex',
-      'Copac'                   : 'copac',
-      'EBI XML'                 : 'ebi',
-      'EndNote'                 : 'end',
-      'EndNote XML'             : 'endx',
-      'ISI'                     : 'isi',
-      'PubMed'                  : 'med',
-      'NBIB MEDLINE'            : 'nbib',
-      'RIS'                     : 'ris',
-      'Word 2007 Bibliography'  : 'wordbib',
-      'MODS'                    : 'xml',
-    },
-  },
-  to: {
-    constants: {
+    to: {
       NASA_ASTROPHYSICS_DATA_SYSTEM       : 'ads',
       ADS                                 : 'ads',
       BIBTEX                              : 'bib',
@@ -70,7 +54,23 @@ const formats = Object.freeze({
       METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
       MODS                                : 'xml',
     },
-    human: {
+  },
+  human: {
+    from: {
+      'BibTeX'                  : 'bib',
+      'BibLaTeX'                : 'biblatex',
+      'Copac'                   : 'copac',
+      'EBI XML'                 : 'ebi',
+      'EndNote'                 : 'end',
+      'EndNote XML'             : 'endx',
+      'ISI'                     : 'isi',
+      'PubMed'                  : 'med',
+      'NBIB MEDLINE'            : 'nbib',
+      'RIS'                     : 'ris',
+      'Word 2007 Bibliography'  : 'wordbib',
+      'MODS'                    : 'xml',
+    },
+    to: {
       'ADS Tagged Format'       : 'ads',
       'BibTeX'                  : 'bib',
       'EndNote'                 : 'end',

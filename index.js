@@ -60,18 +60,18 @@ function executeApplication(commandPath, content, callback) {
 
 module.exports.convert = function (inFormat, outFormat, content, cb) {
   //Error out if they use something wrong
-  if(!Object.values(formats.from.constants).includes(inFormat)) {
+  if(!Object.values(formats.constants.from).includes(inFormat)) {
     throw new Error('Unknown or unsupported bibliography import format: `' + inFormat +
                     '`\nUse bibutils.formats.from to find an appropriate import format.\n' );
   }
-  if(!Object.values(formats.to.constants).includes(outFormat)) {
+  if(!Object.values(formats.constants.to).includes(outFormat)) {
     throw new Error('Unknown or unsupported bibliography export format: `' + outFormat +
                     '`\nUse bibutils.formats.to to find an appropriate export format.\n' );
   }
 
   // If they only want to do a MODS-based conversion, we can just execute that directly
-  if(inFormat === formats.to.constants.METADATA_OBJECT_DESCRIPTION_SCHEMA ||
-     outFormat === formats.from.constants.METADATA_OBJECT_DESCRIPTION_SCHEMA) {
+  if(inFormat === formats.constants.to.METADATA_OBJECT_DESCRIPTION_SCHEMA ||
+     outFormat === formats.constants.from.METADATA_OBJECT_DESCRIPTION_SCHEMA) {
     return executeApplication(binaryPath(inFormat, outFormat), content, cb);
   }
 
@@ -81,8 +81,8 @@ module.exports.convert = function (inFormat, outFormat, content, cb) {
   // Create the callback for the second half first, for the first half to call
   var internalCallback = function (data) {
     // The result of this calls their callback
-    executeApplication(binaryPath(formats.from.constants.METADATA_OBJECT_DESCRIPTION_SCHEMA, outFormat), data, cb);
+    executeApplication(binaryPath(formats.constants.from.METADATA_OBJECT_DESCRIPTION_SCHEMA, outFormat), data, cb);
   }
   // Convert their thing to MODS.
-  executeApplication(binaryPath(inFormat, formats.to.constants.METADATA_OBJECT_DESCRIPTION_SCHEMA), content, internalCallback);
+  executeApplication(binaryPath(inFormat, formats.constants.to.METADATA_OBJECT_DESCRIPTION_SCHEMA), content, internalCallback);
 };
