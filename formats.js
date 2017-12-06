@@ -150,7 +150,7 @@ const metadata = Object.freeze({
     'wordbib' : '.xml',
     'xml'     : '.xml',
   },
-  humanReadable: {
+  human: {
     'ads'     : 'ADS Tagged Format',
     'bib'     : 'BibTeX',
     'biblatex': 'BibLaTeX',
