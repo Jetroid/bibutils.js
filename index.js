@@ -18,7 +18,9 @@ var spawn = require('child_process').spawn;
 var os = require('os');
 var platform = os.platform();
 var path = require('path');
-var formats = module.exports.formats = require('./formats');
+const {
+  formats
+} = module.exports = require('./formats');
 
 // Path component for the binary files
 var BIN_FOLDER = 'bibutils';
@@ -53,20 +55,20 @@ function executeApplication(commandPath, content, callback) {
   child.stdout.on('data', function (data) { callback(data.toString()) });
 }
 
-var convert = module.exports.convert = function (inFormat, outFormat, content, cb) {
+module.exports.convert = function (inFormat, outFormat, content, cb) {
   //Error out if they use something wrong
-  if(!Object.values(formats.from).includes(inFormat)) {
+  if(!Object.values(formats.from.constants).includes(inFormat)) {
     throw new Error('Unknown or unsupported bibliography import format: `' + inFormat +
                     '`\nUse bibutils.formats.from to find an appropriate import format.\n' );
   }
-  if(!Object.values(formats.to).includes(outFormat)) {
+  if(!Object.values(formats.to.constants).includes(outFormat)) {
     throw new Error('Unknown or unsupported bibliography export format: `' + outFormat +
                     '`\nUse bibutils.formats.to to find an appropriate export format.\n' );
   }
 
   // If they only want to do a MODS-based conversion, we can just execute that directly
-  if(inFormat === formats.from.METADATA_OBJECT_DESCRIPTION_SCHEMA ||
-     outFormat === formats.to.METADATA_OBJECT_DESCRIPTION_SCHEMA) {
+  if(inFormat === formats.to.constants.METADATA_OBJECT_DESCRIPTION_SCHEMA ||
+     outFormat === formats.from.constants.METADATA_OBJECT_DESCRIPTION_SCHEMA) {
     return executeApplication(binaryPath(inFormat, outFormat), content, cb);
   }
 
@@ -76,8 +78,8 @@ var convert = module.exports.convert = function (inFormat, outFormat, content, c
   // Create the callback for the second half first, for the first half to call
   var internalCallback = function (data) {
     // The result of this calls their callback
-    executeApplication(binaryPath(formats.from.METADATA_OBJECT_DESCRIPTION_SCHEMA, outFormat), data, cb);
+    executeApplication(binaryPath(formats.from.constants.METADATA_OBJECT_DESCRIPTION_SCHEMA, outFormat), data, cb);
   }
   // Convert their thing to MODS.
-  executeApplication(binaryPath(inFormat, formats.to.METADATA_OBJECT_DESCRIPTION_SCHEMA), content, internalCallback);
-}
+  executeApplication(binaryPath(inFormat, formats.to.constants.METADATA_OBJECT_DESCRIPTION_SCHEMA), content, internalCallback);
+};

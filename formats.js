@@ -14,88 +14,73 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-module.exports = Object.freeze({
+const formats = Object.freeze({
   from: {
-    BIBTEX                              : 'bib',
-    BIBLATEX                            : 'biblatex',
-    COPAC                               : 'copac',
-    EBI                                 : 'ebi',
-    ENDNOTE_REFER                       : 'end',
-    ENDNOTE_TAGGED                      : 'end',
-    ENDNOTE                             : 'end',
-    ENDNOTE_XML                         : 'endx',
-    ISI_WEB_OF_SCIENCE                  : 'isi',
-    ISI                                 : 'isi',
-    PUBMED_XML                          : 'med',
-    PUBMED                              : 'med',
-    NBIB                                : 'nbib',
-    PUBMED_NBIB                         : 'nbib',
-    RIS_RESEARCH_INFORMATION_SYSTEMS    : 'ris',
-    RIS                                 : 'ris',
-    WORD_2007_BIBLIOGRAPHY              : 'wordbib',
-    WORDBIB                             : 'wordbib',
-    METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
-    MODS                                : 'xml',
-  },
-  from_human: {
-    'BibTeX'                  : 'bib',
-    'BibLaTeX'                : 'biblatex'
-    'Copac'                   : 'copac',
-    'EBI XML'                 : 'ebi',
-    'EndNote'                 : 'end',
-    'EndNote XML'             : 'endx',
-    'ISI'                     : 'isi',
-    'PubMed'                  : 'med',
-    'NBIB MEDLINE'            : 'nbib',
-    'RIS'                     : 'ris',
-    'Word 2007 Bibliography'  : 'wordbib',
-    'MODS'                    : 'xml',
+    constants: {
+      BIBTEX                              : 'bib',
+      BIBLATEX                            : 'biblatex',
+      COPAC                               : 'copac',
+      EBI                                 : 'ebi',
+      ENDNOTE_REFER                       : 'end',
+      ENDNOTE_TAGGED                      : 'end',
+      ENDNOTE                             : 'end',
+      ENDNOTE_XML                         : 'endx',
+      ISI_WEB_OF_SCIENCE                  : 'isi',
+      ISI                                 : 'isi',
+      PUBMED_XML                          : 'med',
+      PUBMED                              : 'med',
+      NBIB                                : 'nbib',
+      PUBMED_NBIB                         : 'nbib',
+      RIS_RESEARCH_INFORMATION_SYSTEMS    : 'ris',
+      RIS                                 : 'ris',
+      WORD_2007_BIBLIOGRAPHY              : 'wordbib',
+      WORDBIB                             : 'wordbib',
+      METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
+      MODS                                : 'xml',
+    },
+    human: {
+      'BibTeX'                  : 'bib',
+      'BibLaTeX'                : 'biblatex',
+      'Copac'                   : 'copac',
+      'EBI XML'                 : 'ebi',
+      'EndNote'                 : 'end',
+      'EndNote XML'             : 'endx',
+      'ISI'                     : 'isi',
+      'PubMed'                  : 'med',
+      'NBIB MEDLINE'            : 'nbib',
+      'RIS'                     : 'ris',
+      'Word 2007 Bibliography'  : 'wordbib',
+      'MODS'                    : 'xml',
+    },
   },
   to: {
-    NASA_ASTROPHYSICS_DATA_SYSTEM       : 'ads',
-    ADS                                 : 'ads',
-    BIBTEX                              : 'bib',
-    ENDNOTE                             : 'end',
-    ENDNOTE_REFER                       : 'end',
-    ENDNOTE_TAGGED                      : 'end',
-    ISI_WEB_OF_SCIENCE                  : 'isi',
-    ISI                                 : 'isi',
-    RIS_RESEARCH_INFORMATION_SYSTEMS    : 'ris',
-    RIS                                 : 'ris',
-    WORD_2007_BIBLIOGRAPHY              : 'wordbib',
-    WORDBIB                             : 'wordbib',
-    METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
-    MODS                                : 'xml',
+    constants: {
+      NASA_ASTROPHYSICS_DATA_SYSTEM       : 'ads',
+      ADS                                 : 'ads',
+      BIBTEX                              : 'bib',
+      ENDNOTE                             : 'end',
+      ENDNOTE_REFER                       : 'end',
+      ENDNOTE_TAGGED                      : 'end',
+      ISI_WEB_OF_SCIENCE                  : 'isi',
+      ISI                                 : 'isi',
+      RIS_RESEARCH_INFORMATION_SYSTEMS    : 'ris',
+      RIS                                 : 'ris',
+      WORD_2007_BIBLIOGRAPHY              : 'wordbib',
+      WORDBIB                             : 'wordbib',
+      METADATA_OBJECT_DESCRIPTION_SCHEMA  : 'xml',
+      MODS                                : 'xml',
+    },
+    human: {
+      'ADS Tagged Format'       : 'ads',
+      'BibTeX'                  : 'bib',
+      'EndNote'                 : 'end',
+      'ISI'                     : 'isi',
+      'RIS'                     : 'ris',
+      'Word 2007 Bibliography'  : 'wordbib',
+      'MODS'                    : 'xml',
+    },
   },
-  to_human: {
-    'ADS Tagged Format'       : 'ads',
-    'BibTeX'                  : 'bib',
-    'EndNote'                 : 'end',
-    'ISI'                     : 'isi',
-    'RIS'                     : 'ris',
-    'Word 2007 Bibliography'  : 'wordbib',
-    'MODS'                    : 'xml',
-  },
-  format2mime: {
-    //unknown
-    'ads'       : 'text/plain',
-    'bib'       : 'application/x-bibtex',
-    'biblatex'  : 'application/x-bibtex',
-    //unknown
-    'copac'     : 'text/plain',
-    //unknown
-    'ebi'       : 'application/xml',
-    'end'       : 'application/x-endnote-refer',
-    'endx'      : 'application/x-endnote-library',
-    'isi'       : 'application/x-inst-for-scientific-info',
-    'med'       : 'text/x-pubmed',
-    'nbib'      : 'application/nbib'
-    'ris'       : 'application/x-research-info-systems',
-    //unknown if there is a specific one
-    'wordbib'   : 'application/xml',
-    'xml'       : 'application/mods+xml',
-  },
-  mime2format: {
+  mime: {
     'application/x-bibtex'                      : 'bib',
     'application/x-endnote-library'             : 'endx',
     'application/x-endnote-refer'               : 'end',
@@ -116,25 +101,46 @@ module.exports = Object.freeze({
     //Cell uses this
     'text/ris'                                  : 'ris',
   },
-  extension2format: {
+  extension: {
     '.ads'      : 'ads',
     '.bib'      : ['bib','biblatex'],
     '.end'      : 'end',
     '.isi'      : 'isi',
-    '.nbib'     : 'nbib'
+    '.nbib'     : 'nbib',
     '.ris'      : 'ris',
     '.xml'      : ['endx','ebi','med','wordbib','xml'],
     //copac unknown - default to .txt
     '.txt'      : 'copac',
   },
-  format2extension: {
+});
+const metadata = Object.freeze({
+  mime: {
+    //unknown
+    'ads'       : 'text/plain',
+    'bib'       : 'application/x-bibtex',
+    'biblatex'  : 'application/x-bibtex',
+    //unknown
+    'copac'     : 'text/plain',
+    //unknown
+    'ebi'       : 'application/xml',
+    'end'       : 'application/x-endnote-refer',
+    'endx'      : 'application/x-endnote-library',
+    'isi'       : 'application/x-inst-for-scientific-info',
+    'med'       : 'text/x-pubmed',
+    'nbib'      : 'application/nbib',
+    'ris'       : 'application/x-research-info-systems',
+    //unknown if there is a specific one
+    'wordbib'   : 'application/xml',
+    'xml'       : 'application/mods+xml',
+  },
+  extension: {
     'ads'     : '.ads',
     'bib'     : '.bib',
     'biblatex': '.bib',
     //copac unknown - default to .txt
     'copac'   : '.txt',
     //ebi unknown - default to .xml
-    'ebi'     : '.xml';
+    'ebi'     : '.xml',
     'end'     : '.end',
     'endx'    : '.xml',
     'isi'     : '.isi',
@@ -143,5 +149,12 @@ module.exports = Object.freeze({
     'ris'     : '.ris',
     'wordbib' : '.xml',
     'xml'     : '.xml',
-  }
+  },
 });
+const sampleBibtexString = '@Article{article,\nauthor="Adams, Peter",\ntitle="The title of the work",\njournal="The name of the journal",\nyear="1993",\nmonth="Jul",\nvolume="4",\nnumber="2",\npages="201--213",\nnote="An optional note"\n}'
+
+module.exports = {
+  formats,
+  metadata,
+  sampleBibtexString,
+}
