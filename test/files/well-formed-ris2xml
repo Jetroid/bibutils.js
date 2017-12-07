@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <modsCollection xmlns="http://www.loc.gov/mods/v3">
 <mods ID="article">
     <titleInfo>
@@ -15,6 +15,7 @@
         <dateIssued>1993-Jul</dateIssued>
     </originInfo>
     <typeOfResource>text</typeOfResource>
+    <genre>journal article</genre>
     <relatedItem type="host">
         <titleInfo>
             <title>The name of the journal</title>

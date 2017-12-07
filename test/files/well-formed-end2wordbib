@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<b:Sources SelectedStyle="" xmlns:b="http://schemas.openxmlformats.org/officeDocument/2006/bibliography"  xmlns="http://schemas.openxmlformats.org/officeDocument/2006/bibliography" >
+<b:Source>
+<b:Tag>article</b:Tag>
+<b:SourceType>ArticleInAPeriodical</b:SourceType>
+<b:Year>1993</b:Year>
+<b:Month>07</b:Month>
+<b:PeriodicalTitle>The name of the journal</b:PeriodicalTitle>
+<b:Volume>4</b:Volume>
+<b:Issue>2</b:Issue>
+<b:Pages>201-213</b:Pages>
+<b:Author>
+<b:Author><b:NameList>
+<b:Person><b:Last>Adams</b:Last><b:First>Peter</b:First></b:Person>
+</b:NameList></b:Author>
+</b:Author>
+<b:Title>The title of the work</b:Title>
+<b:Comments>An optional note</b:Comments>
+</b:Source>
+</b:Sources>

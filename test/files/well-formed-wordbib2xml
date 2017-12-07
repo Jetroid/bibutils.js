@@ -11,30 +11,19 @@
             <roleTerm authority="marcrelator" type="text">author</roleTerm>
         </role>
     </name>
-    <originInfo>
-        <dateIssued>1993-Jul</dateIssued>
-    </originInfo>
-    <typeOfResource>text</typeOfResource>
     <relatedItem type="host">
         <titleInfo>
-            <title>The name of the journal</title>
+            <title/>
         </titleInfo>
-        <originInfo>
-            <issuance>continuing</issuance>
-        </originInfo>
-        <genre authority="marcgt">periodical</genre>
-        <genre>academic journal</genre>
+        <part>
+            <detail type="volume"><number>4</number></detail>
+            <extent unit="page">
+                <start>201</start>
+                <end>213</end>
+            </extent>
+        </part>
     </relatedItem>
     <note>An optional note</note>
     <identifier type="citekey">article</identifier>
-    <part>
-        <date>1993-Jul</date>
-        <detail type="volume"><number>4</number></detail>
-        <detail type="number"><number>2</number></detail>
-        <extent unit="page">
-            <start>201</start>
-            <end>213</end>
-        </extent>
-    </part>
 </mods>
 </modsCollection>

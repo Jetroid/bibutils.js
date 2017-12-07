@@ -15,19 +15,54 @@ function testConvert(fromFormat, toFormat, fromContent, toContent){
 
 describe('bibutils.js', function() {
   describe('.formats', function() {
-    it('should have from and to objects', function() {
-      assert(typeof bibutils.formats.from === 'object');
-      assert(typeof bibutils.formats.to === 'object');
+    it('should have constants, human, mime and extensions objects', function() {
+      assert(typeof bibutils.formats.constants === 'object');
+      assert(typeof bibutils.formats.human === 'object');
+      assert(typeof bibutils.formats.mime === 'object');
+      assert(typeof bibutils.formats.extension === 'object');
     });
 
-    describe('.from, .to', function(){
-      it('should contain some key/value pairs', function() {
-        assert(Object.keys(bibutils.formats.from).length > 0);
-        assert(Object.keys(bibutils.formats.to).length > 0);
+    describe('constants', function(){
+      describe('.from, .to', function(){
+        it('should contain some key/value pairs', function() {
+          assert(Object.keys(bibutils.formats.constants.from).length > 0);
+          assert(Object.keys(bibutils.formats.constants.to).length > 0);
+        });
+        it('should contain at least the MODS pair', function() {
+          assert(bibutils.formats.constants.to.METADATA_OBJECT_DESCRIPTION_SCHEMA === 'xml');
+          assert(bibutils.formats.constants.from.METADATA_OBJECT_DESCRIPTION_SCHEMA === 'xml');
+        });
       });
-      it('should contain at least the MODS pair', function() {
-        assert(bibutils.formats.to.METADATA_OBJECT_DESCRIPTION_SCHEMA === 'xml');
-        assert(bibutils.formats.from.METADATA_OBJECT_DESCRIPTION_SCHEMA === 'xml');
+    });
+
+    describe('human', function(){
+      describe('.from, .to', function(){
+        it('should contain some key/value pairs', function() {
+          assert(Object.keys(bibutils.formats.human.from).length > 0);
+          assert(Object.keys(bibutils.formats.human.to).length > 0);
+        });
+        it('should contain at least MODS', function() {
+          assert(bibutils.formats.human.to['MODS'] === 'xml');
+          assert(bibutils.formats.human.from['MODS'] === 'xml');
+        });
+      });
+    });
+
+    describe('mime', function(){
+      it('should contain some key/value pairs', function() {
+        assert(Object.keys(bibutils.formats.mime).length > 0);
+      });
+      it('should contain at least MODS', function() {
+        assert(Object.values(bibutils.formats.mime).includes('xml'));
+      });
+    });
+
+    describe('extension', function(){
+      it('should contain some key/value pairs', function() {
+        assert(Object.keys(bibutils.formats.extension).length > 0);
+      });
+      it('should contain at least MODS', function() {
+        assert(Object.values(bibutils.formats.excutions).includes('xml'));
       });
     });
   });
@@ -38,7 +73,7 @@ describe('bibutils.js', function() {
     });
 
     //Test conversion between each of these formats
-    var formatsToTest = ['bib','ris','end','xml','isi'];
+    var formatsToTest = ['bib','ris','end','xml','wordbib'];
 
     //Test conversion from and to each of these formats
     for (var i = 0, len = formatsToTest.length; i < len; i++){

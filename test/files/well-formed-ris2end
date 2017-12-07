@@ -1,4 +1,4 @@
-%0 Journal Article
+﻿%0 Journal Article
 %T The title of the work
 %A Adams, Peter
 %J The name of the journal
@@ -8,5 +8,6 @@
 %N 2
 %F article
 %O An optional note
+%9 journal article
 %P 201-213
 
