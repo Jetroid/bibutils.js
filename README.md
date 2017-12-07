@@ -435,15 +435,39 @@ The writer of this nodejs module is [Jet Holt](https://github.com/Jetroid).
 
 [List of all contributors](https://github.com/Jetroid/bibutils.js/graphs/contributors)
 
-## License
+## Licenses
 
-  [GPL-3.0](LICENSE)
+This module contains both code licensed under [GPL-2.0](GPL_LICENSE) and
+[MIT](MIT_LICENSE).
 
-## FAQ
+The code licensed under GPL-2.0 is contained in the `/bibutils/` folder.
+That is, unmodified, compiled binaries of Chris Putnam's `bibutils` program set.
+The source code to these binaries is included in `/bibutils/` as a gzipped source tarball,
+complying with the GPL-2.0 License.
 
-### Can you relicense under something not GPL?
+The code licensed under MIT is the node.js code, that is,
+all code but that found in the `/bibutils` folder.
 
-Nope, I can't even if I wanted to.
+The MIT-licensed code included in `bibutils.js`
+ * has not modified Chris Putnam's `bibutils` source code
+ * does not contain any of Chris Putnam's `bibutils` source code
+ (that is to say `bibutils.js` is not statically nor dynamically linked to `bibutils`)
+ * executes Chris Putnam's `bibutils` compiled binaries
+ as seperate processes (ie fork-exec) with their own address spaces,
+ and does not establish intimate communication (sharing internal data structures)
+ * can exist and (barring the `.convert` functionality)
+ continue to operate without the `bibutils` binary
 
-The set of programs that this module wraps are released under GPL and therefore
-so is this module.
+...therefore we believe that `bibutils.js` is not considered a 'derivate work'
+of `bibutils` as defined in the GPL-2.0 license.
+(`bibutils.js` does not contain `bibutils` as a whole or in part as an executable,
+and has made no modifications.)
+
+The non-`bibutils` code and the `bibutils` code are considered
+[different programs](https://www.gnu.org/licenses/old-licenses/gpl-2.0-faq.html#GPLPlugins).
+`bibutils.js` could be said to execute `bibutils` programs as plugins to enhance
+`bibutils.js`'s feature set.
+
+`bibutils.js` and `bibutils` are
+[merely aggregated](https://www.gnu.org/licenses/old-licenses/gpl-2.0-faq.html#MereAggregation).
+They have been distributed together as seperate programs.
