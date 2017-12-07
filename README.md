@@ -9,7 +9,7 @@ var bibutils = require('bibutils.js');
 
 // Acquire the appropriate format identifiers
 var fromFormat = bibutils.formats.constants.from.BIBTEX;
-var toFormat = bibutils.formats.to.human['RIS'];
+var toFormat = bibutils.formats.human.to['RIS'];
 
 // Get the metadata we want
 var toMime = bibutils.metadata.mime[toFormat]; // => 'application/x-research-info-systems'
@@ -91,7 +91,7 @@ see the [Format Identifier Acquisition](#format-identifier-acquisition) section.
 
 ```javascript
 var fromFormat = bibutils.formats.constants.from.BIBTEX;
-var toFormat = bibutils.formats.to.human['RIS'];
+var toFormat = bibutils.formats.human.to['RIS'];
 ```
 
 ### Get Metadata
@@ -101,11 +101,11 @@ Get any metadata you need from the `.metadata` object:
 ```javascript
 var fromMime = bibutils.metadata.mime[fromFormat];
 var fromExtension = bibutils.metadata.extension[fromFormat];
-var fromHumanReadableName = bibutils.metadata.humanReadable[fromFormat];
+var fromHumanReadableName = bibutils.metadata.human[fromFormat];
 
 var toMime = bibutils.metadata.mime[toFormat];
 var toExtension = bibutils.metadata.extension[toFormat];
-var toHumanReadableName = bibutils.metadata.humanReadable[toFormat];
+var toHumanReadableName = bibutils.metadata.human[toFormat];
 ```
 
 ### Convert Between Formats
@@ -134,16 +134,17 @@ bibutils.convert(fromFormat, toFormat, myBibliographyString, callback);
 
 `bibutils.js` provides mappings from format identifier
 (see [format identifier acquisition](#format-identifier-acquisition))
-to MIME type and file extension.
+to MIME type, human readable name, and file extension.
 
-These are provided by the `.metadata.mime` and `.metadata.extension`
-objects, respectively.
+These are provided by the `.metadata.mime`, `.metadata.human`,
+and `.metadata.extension` objects, respectively.
 
 ```javascript
-// Get MIME type and extension for ISI documents
-var convertTo = bibutils.formats.constants.to.ISI;
-var mimeType = bibutils.metadata.mime[convertTo];
-var extension = bibutils.metadata.extension[convertTo];
+// Get MIME type, human name, and extension for ISI documents
+var identifier = bibutils.formats.constants.to.ISI;
+var mimeType = bibutils.metadata.mime[identifier];
+var extension = bibutils.metadata.extension[identifier];
+var human = bibutils.metadata.human[identifier];
 ```
 
 `bibutils.js` does not currently have a specific MIME type for
@@ -194,8 +195,8 @@ The first array provides parameters for the conversion from a format to MODS,
 and the second array provides parameters for the conversion from MODS to a format.
 
 ```javascript
-var from = bibutils.format.constants.from.RIS;
-var to = bibutils.formats.to.BIBTEX;
+var from = bibutils.formats.constants.from.RIS;
+var to = bibutils.formats.constants.to.BIBTEX;
 var options1 = ['-as','./test.txt'];
 var options2 = ['-U'];
 bibutils.convert(from, to, risString, callback, options1, options2);
@@ -280,8 +281,8 @@ bibutils.formats.constants.to = {
 Example use of constants to convert from RIS to ADS.
 
 ```javascript
-var convertFrom = bibutils.formats.from.RIS_RESEARCH_INFORMATION_SYSTEMS;
-var convertTo = bibutils.formats.to.NASA_ASTROPHYSICS_DATA_SYSTEM;
+var convertFrom = bibutils.formats.constants.from.RIS_RESEARCH_INFORMATION_SYSTEMS;
+var convertTo = bibutils.formats.constants.to.NASA_ASTROPHYSICS_DATA_SYSTEM;
 ```
 
 ### Identifier via Human Readable Name
@@ -377,8 +378,8 @@ This is `.formats.extension`.
 
 ```javascript
 // Convert from BibTex to ISI
-var convertFrom = bibutils.formats.extension2format['.bib'];
-var convertTo = bibutils.formats.extension2format['.isi'];
+var convertFrom = bibutils.formats.extension['.bib'];
+var convertTo = bibutils.formats.extension['.isi'];
 ```
 
 Additionally, not all formats have a unique MIME type.
@@ -446,7 +447,7 @@ The source code to these binaries is included in `/bibutils/` as a gzipped sourc
 complying with the GPL-2.0 License.
 
 The code licensed under MIT is the node.js code, that is,
-all code but that found in the `/bibutils` folder.
+all code but that found in the `/bibutils/` folder.
 
 The MIT-licensed code included in `bibutils.js`
  * has not modified Chris Putnam's `bibutils` source code
