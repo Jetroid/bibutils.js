@@ -15,12 +15,12 @@ var toFormat = bibutils.formats.human.to['RIS'];
 var toMime = bibutils.metadata.mime[toFormat]; // => 'application/x-research-info-systems'
 var toExtension = bibutils.metadata.extension[toFormat]; // => '.ris'
 
-// Get some Bibliography string in the format specified by fromFormat
+// Get the sample BibTeX string to convert.
 var myBibliographyString = bibutils.sampleBibtexString;
 
 // Convert between the two formats
 bibutils.convert(fromFormat, toFormat, myBibliographyString, function (data) {
-  // Prints the BibTeX file's data in Word 2007 Bibliography format
+  // Prints the BibTeX sample converted to RIS format
   console.log(data);	
 });
 ```
@@ -88,6 +88,8 @@ var bibutils = require('bibutils.js');
 
 Acquire the appropriate format identifiers for your required usage,
 see the [Format Identifier Acquisition](#format-identifier-acquisition) section.
+
+The example below selects the fromFormat with a constant identifier, and the toFormat using the human readable string, `'RIS'`.
 
 ```javascript
 var fromFormat = bibutils.formats.constants.from.BIBTEX;
