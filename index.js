@@ -48,7 +48,10 @@ function executeApplication(commandPath, content, callback, arguments) {
   var child = spawn(commandPath, arguments);
   child.stdin.write(content);
   child.stdin.end();
-  child.stdout.on('data', function (data) { callback(data.toString()) });
+  
+  var output = '';
+  child.stdout.on('data', function (data) { output += data.toString() });
+  child.stdout.on('end', function () { callback(output) })
 }
 
 module.exports.convert = function (inFormat, outFormat, content, cb, argumentsFrom=[], argumentsTo=[]) {
