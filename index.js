@@ -16,7 +16,8 @@ const {
 } = module.exports = require('./formats');
 
 // Path component for the binary files
-const BIN_FOLDER = 'bibutils';
+const DEFAULT_BIN_FOLDER = 'bibutils';
+var CUSTOM_BIN_FOLDER = null;
 
 // Get the platform extension - we use this to determine the binary to execute
 var EXT = '';
@@ -41,7 +42,8 @@ function binaryPath(inFormat, outFormat) {
   } else {
     file = inFormat + '2' + outFormat + EXT;
   }
-  return path.join(__dirname, BIN_FOLDER, file);
+  var binPath = CUSTOM_BIN_FOLDER ? CUSTOM_BIN_FOLDER : path.join(__dirname, DEFAULT_BIN_FOLDER);
+  return path.join(binPath, file);
 }
 
 function executeApplication(commandPath, content, callback, arguments) {
@@ -84,4 +86,8 @@ module.exports.convert = function (inFormat, outFormat, content, cb, argumentsFr
   }
   // Convert their thing to MODS.
   executeApplication(binaryPath(inFormat, formats.constants.to.METADATA_OBJECT_DESCRIPTION_SCHEMA), content, internalCallback, argumentsFrom);
+};
+
+module.exports.setBinaryPath = function (binPath) {
+  CUSTOM_BIN_FOLDER = binPath;
 };
