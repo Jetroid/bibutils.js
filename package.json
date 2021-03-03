@@ -1,7 +1,7 @@
 {
   "name": "bibutils.js",
   "author": "Jet Holt",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "Node wrapper for Chris Putnam's bibutils program set",
   "main": "index.js",
   "scripts": {
