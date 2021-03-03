@@ -21,7 +21,9 @@ var CUSTOM_BIN_FOLDER = null;
 
 // Get the platform extension - we use this to determine the binary to execute
 var EXT = '';
-if (platform === 'win32'){
+if (CUSTOM_BIN_FOLDER) {
+  EXT = '';
+} else if (platform === 'win32'){
   EXT = '.exe';
 } else if (platform === 'darwin') {
   EXT = '-osx';
