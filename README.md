@@ -112,12 +112,14 @@ var toHumanReadableName = bibutils.metadata.human[toFormat];
 
 ### Convert Between Formats
 
-Write a callback to be called when conversion is completed.
-`data` is the converted bibliography as a string.
+Write a callback to be called when conversion is completed. `err` is set if 
+any error occurs, `data` is the converted bibliography as a string.
 
 ```javascript
-var callback = function (data) {
-  console.log(data);
+var callback = function (err, data) {
+  if (!err) {
+    console.log(data);
+  }
 };
 ```
 
@@ -169,8 +171,10 @@ You must also write your application to use callbacks;
 `bibutils.js`'s `convert` function is asynchronous.
 
 ```javascript
-var callback = function (data) {
-  console.log(data);
+var callback = function (err, data) {
+  if (!err) {
+    console.log(data);
+  }
 };
 
 // Get some bibliography string
@@ -412,6 +416,22 @@ bibutils.formats.extension = {
   //copac unknown - default to .txt
   '.txt'      : 'copac',
 };
+```
+
+## Change Binary Path
+
+If you want to use a different set of BibUtils binaries, you can set the path to them
+using the exported function 'setBinaryPath'.
+
+```javascript
+bibutils.setBinaryPath('/usr/bin');
+```
+
+By default, using a custom path will not use a binary extension. If you need to set it
+you can by using the second parameter.
+
+```javascript
+bibutils.setBinaryPath('C:\\BibUtils', '.exe');
 ```
 
 ## Tests
