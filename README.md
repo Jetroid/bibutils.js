@@ -19,9 +19,11 @@ var toExtension = bibutils.metadata.extension[toFormat]; // => '.ris'
 var myBibliographyString = bibutils.sampleBibtexString;
 
 // Convert between the two formats
-bibutils.convert(fromFormat, toFormat, myBibliographyString, function (data) {
-  // Prints the BibTeX sample converted to RIS format
-  console.log(data);	
+bibutils.convert(fromFormat, toFormat, myBibliographyString, function (err, data) {
+  if (!err) {
+    // Prints the BibTeX sample converted to RIS format
+    console.log(data);
+  }
 });
 ```
 
