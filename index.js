@@ -56,7 +56,9 @@ function binaryPath(inFormat, outFormat) {
 }
 
 function executeApplication(commandPath, content, callback, arguments) {
-  var child = spawn(commandPath, arguments);
+  var child = spawn(commandPath, arguments, {
+    stdio: [ 'pipe', 'pipe', 'ignore' ]
+  });
   child.on('error', function (err) {
     console.error('Error with child process. ', err.message ? err.message : '');
   });
