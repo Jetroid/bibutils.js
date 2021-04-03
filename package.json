@@ -1,15 +1,15 @@
 {
-  "name": "bibutils.js",
-  "author": "Jet Holt",
-  "version": "3.0.0",
-  "description": "Node wrapper for Chris Putnam's bibutils program set",
+  "name": "wk-bibutils.js",
+  "author": "Wolters Kluwer",
+  "version": "1.0.0",
+  "description": "WK specific node wrapper for Chris Putnam's bibutils program set",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jetroid/bibutils.js.git"
+    "url": "git+https://github.com/chriscapaci/bibutils.js.git"
   },
   "os": [
     "linux",
@@ -30,9 +30,9 @@
   ],
   "license": "GPL-2.0",
   "bugs": {
-    "url": "https://github.com/Jetroid/bibutils.js/issues"
+    "url": "https://github.com/chriscapaci/bibutils.js/issues"
   },
-  "homepage": "https://github.com/Jetroid/bibutils.js#readme",
+  "homepage": "https://github.com/chriscapaci/bibutils.js#readme",
   "devDependencies": {
     "mocha": "^4.0.1",
     "sinon": "^9.2.4"
