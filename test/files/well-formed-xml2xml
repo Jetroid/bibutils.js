@@ -23,7 +23,7 @@
             <issuance>continuing</issuance>
         </originInfo>
         <genre authority="marcgt">periodical</genre>
-        <genre>academic journal</genre>
+        <genre authority="bibutilsgt">academic journal</genre>
     </relatedItem>
     <note>An optional note</note>
     <identifier type="citekey">article</identifier>
