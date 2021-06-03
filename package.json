@@ -1,7 +1,7 @@
 {
   "name": "wk-bibutils.js",
   "author": "Wolters Kluwer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "WK specific node wrapper for Chris Putnam's bibutils program set",
   "main": "index.js",
   "scripts": {
