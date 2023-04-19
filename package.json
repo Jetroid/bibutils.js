@@ -34,6 +34,6 @@
   },
   "homepage": "https://github.com/Jetroid/bibutils.js#readme",
   "devDependencies": {
-    "mocha": "^4.0.1"
+    "mocha": "^10.2.0"
   }
 }
